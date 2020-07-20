@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinamobile.springsecurity.demo.dao.UserDao">
+    <select id="getUserByUsername" resultType="com.chinamobile.springsecurity.demo.model.UserDto">
+        select id,username,password,fullname,mobile from t_user where username = #{username}
+    </select>
+    <select id="findPermissionsAndRoleByUserId" resultType="com.chinamobile.springsecurity.demo.model.Role_PermissionDto">
+        SELECT
+			b.role_name,
+			e.code
+		FROM
+			t_user a,
+			t_role b,
+			t_user_role c,
+			t_role_permission d,
+			t_permission e
+		WHERE
+			a.id = c.user_id
+			AND b.id = c.role_id
+			AND b.id = d.role_id
+			AND e.id = d.permission_id
+			AND a.id =#{userId}
+    </select>
+</mapper>

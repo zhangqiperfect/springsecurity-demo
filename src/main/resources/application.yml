@@ -1,0 +1,15 @@
+#配置数据源
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_security_db?useSSL=false&serverTimezone=Asia/Shanghai
+#Mybatis相关依赖
+mybatis:
+  mapper-locations: classpath:mapper/**.xml
+  type-aliases-package: com.chinamobile.springsecurity.demo.model
+  configuration:
+    map-underscore-to-camel-case: true
+#MybatisLogPlugin日志配置
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
